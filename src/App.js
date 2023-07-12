@@ -1,11 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import MapleHeader from './components/MapleHeader';
+import MeHalIl from './components/MeHalIl';
+import MeHanIl from './components/MeHanIl';
 
 function App() {
   return (
-    <div>
-      <p className='text-4xl bg-slate-100'>hi</p>
-    </div>
+    <>
+      <MapleHeader />
+      <main className='p-4 pt-40 flex flex-col gap-12'>
+        <MeHalIl />
+        <MeHanIl />
+      </main>
+    </>
   );
 }
 
