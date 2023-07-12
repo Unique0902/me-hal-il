@@ -7,15 +7,26 @@ import MeHanIl from './components/MeHanIl';
 
 function App() {
   const [isEditing, setIsEditing] = useState(false);
+  const [halIlType, setHalIlType] = useState('daily');
   const goEditor = () => {
     setIsEditing(true);
   };
   const endEditor = () => {
     setIsEditing(false);
   };
+  const handleClickDaily = () => {
+    setHalIlType('daily');
+  };
+  const handleClickWeekly = () => {
+    setHalIlType('weekly');
+  };
   return (
     <>
-      <MapleHeader />
+      <MapleHeader
+        halIlType={halIlType}
+        handleClickDaily={handleClickDaily}
+        handleClickWeekly={handleClickWeekly}
+      />
       <main className='p-4 pt-40 flex flex-col gap-12'>
         {isEditing ? (
           <MeHalIlEditor endEditor={endEditor} />

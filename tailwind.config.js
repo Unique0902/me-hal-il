@@ -11,6 +11,7 @@ module.exports = {
       metal: '#565584',
       tahiti: '#3ab7bf',
       mapleorange: '#FFB72C',
+      mapleclickedorange: '#BB7C00',
       mapleblue: '#1549FF',
       mapleskyblue: '#4DB8FF',
       maplegreen: '#76F062',
