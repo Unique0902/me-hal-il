@@ -2,6 +2,8 @@ import React from 'react';
 import { BsCheck } from 'react-icons/bs';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { FiRotateCcw } from 'react-icons/fi';
+import { BiSolidEdit } from 'react-icons/bi';
+import { BsFillTrash3Fill } from 'react-icons/bs';
 export default function MapleListItem({ type, status }) {
   return (
     <li className=' h-32 flex flex-row items-center justify-between'>
@@ -9,6 +11,8 @@ export default function MapleListItem({ type, status }) {
       <div
         className={`flex flex-row ${type === 'todo' && 'bg-mapleskyblue'} ${
           type === 'finished' && 'bg-maplelightgray'
+        } ${
+          type === 'edit' && 'bg-mapleskyblue'
         } h-2/3 w-2/3 items-center justify-between px-10`}
       >
         <h4 className='text-black text-2xl font-semibold'>유니온 코인 받기</h4>
@@ -24,6 +28,16 @@ export default function MapleListItem({ type, status }) {
             </button>
             <button className=' text-mapleblue text-4xl hover:scale-110'>
               <AiOutlineArrowRight />
+            </button>
+          </div>
+        )}
+        {type === 'edit' && (
+          <div className='flex flex-row items-center gap-6'>
+            <button className=' text-black text-5xl hover:scale-110'>
+              <BiSolidEdit />
+            </button>
+            <button className=' text-darkgrey text-4xl hover:scale-110'>
+              <BsFillTrash3Fill />
             </button>
           </div>
         )}

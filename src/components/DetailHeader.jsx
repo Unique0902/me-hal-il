@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function DetailHeader({ type }) {
+export default function DetailHeader({ type, onBtnClick }) {
   return (
     <section className='flex flex-row justify-between items-center'>
       <div className='flex flex-row gap-10 items-center'>
@@ -10,12 +10,32 @@ export default function DetailHeader({ type }) {
         {type === 'todo' && (
           <h2 className=' text-4xl text-mapleskyblue font-bold'>메할일</h2>
         )}
-        <button className=' bg-maplebtngrey px-6 py-4 text-white font-semibold text-xl hover:scale-110'>
-          편집
-        </button>
+        {type === 'edit' && (
+          <h2 className=' text-4xl text-mapleskyblue font-bold'>
+            메할일리스트
+          </h2>
+        )}
+        {type === 'edit' ? (
+          <button
+            className=' bg-mapleorange px-6 py-4 text-white font-semibold text-xl hover:scale-110'
+            onClick={onBtnClick}
+          >
+            저장
+          </button>
+        ) : (
+          <button
+            className=' bg-maplebtngrey px-6 py-4 text-white font-semibold text-xl hover:scale-110'
+            onClick={onBtnClick}
+          >
+            편집
+          </button>
+        )}
       </div>
       {type === 'todo' && (
         <p className=' text-4xl text-mapleskyblue font-bold'>6 / 10</p>
+      )}
+      {type === 'edit' && (
+        <p className=' text-4xl text-mapleskyblue font-bold'>2개</p>
       )}
     </section>
   );
