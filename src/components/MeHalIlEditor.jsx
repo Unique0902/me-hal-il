@@ -3,7 +3,13 @@ import DetailHeader from './DetailHeader';
 import MapleListItem from './MapleListItem';
 import MeHalIlAddInputBox from './MeHalIlAddInputBox';
 
-export default function MeHalIlEditor({ endEditor, list }) {
+export default function MeHalIlEditor({
+  endEditor,
+  list,
+  handleAddItem,
+  handleDeleteItem,
+  handleEditItem,
+}) {
   const [isAdding, setIsAdding] = useState(false);
   const onClickAddBtn = () => {
     setIsAdding(true);
@@ -19,7 +25,14 @@ export default function MeHalIlEditor({ endEditor, list }) {
       <DetailHeader type={'edit'} onBtnClick={onSave} />
       <ul className='mt-8 flex flex-col gap-6'>
         {list.map((item) => (
-          <MapleListItem type={'edit'} name={item.name} key={item.id} />
+          <MapleListItem
+            type={'edit'}
+            name={item.name}
+            key={item.id}
+            id={item.id}
+            handleDeleteItem={handleDeleteItem}
+            handleEditItem={handleEditItem}
+          />
         ))}
         {!isAdding && (
           <button

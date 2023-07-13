@@ -13,6 +13,8 @@ export default function MapleListItem({
   handleSkipItem,
   id,
   handleCompleteItem,
+  handleDeleteItem,
+  handleEditItem,
 }) {
   return (
     <li className=' h-32 flex flex-row items-center justify-between'>
@@ -57,10 +59,20 @@ export default function MapleListItem({
         )}
         {type === 'edit' && (
           <div className='flex flex-row items-center gap-6'>
-            <button className=' text-black text-5xl hover:scale-110'>
+            <button
+              className=' text-black text-5xl hover:scale-110'
+              onClick={() => {
+                handleEditItem(id, '수정된 이름');
+              }}
+            >
               <BiSolidEdit />
             </button>
-            <button className=' text-darkgrey text-4xl hover:scale-110'>
+            <button
+              className=' text-darkgrey text-4xl hover:scale-110'
+              onClick={() => {
+                handleDeleteItem(id);
+              }}
+            >
               <BsFillTrash3Fill />
             </button>
           </div>

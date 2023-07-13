@@ -113,6 +113,47 @@ function App() {
       );
     }
   };
+  const handleAddItem = (name) => {
+    if (halIlType === 'daily') {
+      setDailyList([
+        ...dailyList,
+        { id: Date.now().toString(), name, isCleared: false, clearType: '' },
+      ]);
+    } else {
+      setWeeklyList([
+        ...weeklyList,
+        { id: Date.now().toString(), name, isCleared: false, clearType: '' },
+      ]);
+    }
+  };
+  const handleDeleteItem = (id) => {
+    if (halIlType === 'daily') {
+      setDailyList(dailyList.filter((item) => item.id !== id));
+    } else {
+      setWeeklyList(weeklyList.filter((item) => item.id !== id));
+    }
+  };
+  const handleEditItem = (id, newName) => {
+    if (halIlType === 'daily') {
+      setDailyList(
+        dailyList.map((item) => {
+          if (item.id === id) {
+            return { ...item, name: newName };
+          }
+          return item;
+        })
+      );
+    } else {
+      setWeeklyList(
+        weeklyList.map((item) => {
+          if (item.id === id) {
+            return { ...item, name: newName };
+          }
+          return item;
+        })
+      );
+    }
+  };
   return (
     <>
       <MapleHeader
@@ -127,6 +168,9 @@ function App() {
           <MeHalIlEditor
             endEditor={endEditor}
             list={halIlType === 'daily' ? dailyList : weeklyList}
+            handleAddItem={handleAddItem}
+            handleDeleteItem={handleDeleteItem}
+            handleEditItem={handleEditItem}
           />
         ) : (
           <>
