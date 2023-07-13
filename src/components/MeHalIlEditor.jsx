@@ -44,7 +44,12 @@ export default function MeHalIlEditor({
             </h3>
           </button>
         )}
-        {isAdding && <MeHalIlAddInputBox onAddingCancel={onAddingCancel} />}
+        {isAdding && (
+          <MeHalIlAddInputBox
+            onAddingCancel={onAddingCancel}
+            handleAddItem={handleAddItem}
+          />
+        )}
       </ul>
     </div>
   );

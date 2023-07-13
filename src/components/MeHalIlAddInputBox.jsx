@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 
-export default function MeHalIlAddInputBox({ onAddingCancel }) {
+export default function MeHalIlAddInputBox({ onAddingCancel, handleAddItem }) {
   const [halIlName, setHalIlName] = useState('기본 할일 1');
   const handleChange = (e) => setHalIlName(e.target.value);
   return (
@@ -17,7 +17,15 @@ export default function MeHalIlAddInputBox({ onAddingCancel }) {
         onChange={handleChange}
       />
       <div className='flex flex-row gap-6 items-center'>
-        <button className='text-mapleskyblue text-4xl hover:scale-110'>
+        <button
+          className='text-mapleskyblue text-4xl hover:scale-110'
+          onClick={() => {
+            if (halIlName) {
+              handleAddItem(halIlName);
+              onAddingCancel();
+            }
+          }}
+        >
           <AiOutlinePlus />
         </button>
         <button
