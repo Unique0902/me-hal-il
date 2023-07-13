@@ -119,6 +119,8 @@ function App() {
         halIlType={halIlType}
         handleClickDaily={handleClickDaily}
         handleClickWeekly={handleClickWeekly}
+        dailyNum={dailyList.filter((item) => !item.isCleared).length}
+        weeklyNum={weeklyList.filter((item) => !item.isCleared).length}
       />
       <main className='p-4 pt-40 flex flex-col gap-12'>
         {isEditing ? (

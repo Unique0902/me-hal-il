@@ -6,6 +6,8 @@ export default function MapleHeader({
   halIlType,
   handleClickDaily,
   handleClickWeekly,
+  dailyNum,
+  weeklyNum,
 }) {
   return (
     <header className='p-4 fixed'>
@@ -16,13 +18,13 @@ export default function MapleHeader({
             <QuestBtn
               text={'일간'}
               isClicked={halIlType === 'daily'}
-              questNum={'0'}
+              questNum={`${dailyNum}`}
               handleClick={handleClickDaily}
             />
             <QuestBtn
               text={'주간'}
               isClicked={halIlType === 'weekly'}
-              questNum={'0'}
+              questNum={`${weeklyNum}`}
               handleClick={handleClickWeekly}
             />
           </div>
