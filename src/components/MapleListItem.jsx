@@ -4,7 +4,16 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 import { FiRotateCcw } from 'react-icons/fi';
 import { BiSolidEdit } from 'react-icons/bi';
 import { BsFillTrash3Fill } from 'react-icons/bs';
-export default function MapleListItem({ type, status }) {
+export default function MapleListItem({
+  type,
+  status,
+  name,
+  clearType,
+  handleRetryItem,
+  handleSkipItem,
+  id,
+  handleCompleteItem,
+}) {
   return (
     <li className=' h-32 flex flex-row items-center justify-between'>
       <img src='imgs/exUnion.png' alt='exUnion' className='h-full' />
@@ -15,18 +24,33 @@ export default function MapleListItem({ type, status }) {
           type === 'edit' && 'bg-mapleskyblue'
         } h-2/3 w-2/3 items-center justify-between px-10`}
       >
-        <h4 className='text-black text-2xl font-semibold'>유니온 코인 받기</h4>
-        {type === 'finished' && (
+        <h4 className='text-black text-2xl font-semibold'>{name}</h4>
+        {type === 'finished' && clearType === 'completed' && (
           <h4 className='text-black text-2xl font-extrabold text-mapledarkgrey'>
-            완료됨
+            완료
+          </h4>
+        )}
+        {type === 'finished' && clearType === 'skipped' && (
+          <h4 className='text-black text-2xl font-extrabold text-mapleblue'>
+            스킵
           </h4>
         )}
         {type === 'todo' && (
           <div className='flex flex-row items-center gap-4'>
-            <button className=' text-maplegreen text-6xl hover:scale-110'>
+            <button
+              className=' text-maplegreen text-6xl hover:scale-110'
+              onClick={() => {
+                handleCompleteItem(id);
+              }}
+            >
               <BsCheck />
             </button>
-            <button className=' text-mapleblue text-4xl hover:scale-110'>
+            <button
+              className=' text-mapleblue text-4xl hover:scale-110'
+              onClick={() => {
+                handleSkipItem(id);
+              }}
+            >
               <AiOutlineArrowRight />
             </button>
           </div>
@@ -42,7 +66,12 @@ export default function MapleListItem({ type, status }) {
           </div>
         )}
         {type === 'finished' && (
-          <button className=' text-black text-4xl hover:scale-110'>
+          <button
+            className=' text-black text-4xl hover:scale-110'
+            onClick={() => {
+              handleRetryItem(id);
+            }}
+          >
             <FiRotateCcw />
           </button>
         )}
