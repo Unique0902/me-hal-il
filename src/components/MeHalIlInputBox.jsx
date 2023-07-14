@@ -14,7 +14,9 @@ export default function MeHalIlInputBox({
   const [halIlName, setHalIlName] = useState('기본 할일 1');
   const handleChange = (e) => setHalIlName(e.target.value);
   useEffect(() => {
-    setHalIlName(editName);
+    if (type === 'edit') {
+      setHalIlName(editName);
+    }
   }, []);
   return (
     <div className='flex flex-row px-8 py-8 justify-between bg-maplelightgray items-center'>
