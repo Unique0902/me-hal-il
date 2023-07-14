@@ -14,7 +14,7 @@ export default function MapleListItem({
   id,
   handleCompleteItem,
   handleDeleteItem,
-  handleEditItem,
+  handleStartEditItem,
 }) {
   return (
     <li className=' h-32 flex flex-row items-center justify-between'>
@@ -62,7 +62,7 @@ export default function MapleListItem({
             <button
               className=' text-black text-5xl hover:scale-110'
               onClick={() => {
-                handleEditItem(id, '수정된 이름');
+                handleStartEditItem();
               }}
             >
               <BiSolidEdit />

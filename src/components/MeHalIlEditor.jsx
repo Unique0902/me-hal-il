@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DetailHeader from './DetailHeader';
-import MapleListItem from './MapleListItem';
-import MeHalIlAddInputBox from './MeHalIlAddInputBox';
+import MapleEditorItem from './MapleEditorItem';
+import MeHalIlInputBox from './MeHalIlInputBox';
 
 export default function MeHalIlEditor({
   endEditor,
@@ -25,11 +25,9 @@ export default function MeHalIlEditor({
       <DetailHeader type={'edit'} onBtnClick={onSave} />
       <ul className='mt-8 flex flex-col gap-6'>
         {list.map((item) => (
-          <MapleListItem
-            type={'edit'}
-            name={item.name}
+          <MapleEditorItem
+            item={item}
             key={item.id}
-            id={item.id}
             handleDeleteItem={handleDeleteItem}
             handleEditItem={handleEditItem}
           />
@@ -45,7 +43,8 @@ export default function MeHalIlEditor({
           </button>
         )}
         {isAdding && (
-          <MeHalIlAddInputBox
+          <MeHalIlInputBox
+            type={'add'}
             onAddingCancel={onAddingCancel}
             handleAddItem={handleAddItem}
           />
