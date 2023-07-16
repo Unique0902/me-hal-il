@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function DetailHeader({ type, onBtnClick }) {
+export default function DetailHeader({ type, onBtnClick, listNum, clearNum }) {
   return (
     <section className='flex flex-row justify-between items-center'>
       <div className='flex flex-row gap-10 items-center'>
@@ -32,7 +32,7 @@ export default function DetailHeader({ type, onBtnClick }) {
         )}
       </div>
       {type === 'todo' && (
-        <p className=' text-4xl text-mapleskyblue font-bold'>6 / 10</p>
+        <p className=' text-4xl text-mapleskyblue font-bold'>{`${clearNum} / ${listNum}`}</p>
       )}
       {type === 'edit' && (
         <p className=' text-4xl text-mapleskyblue font-bold'>2개</p>
