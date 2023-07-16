@@ -54,6 +54,31 @@ export default function MeHalIlInputBox({
             handleClickImage={handleClickImage}
             selectedImageName={selectedImageName}
           />
+          <ImageSelectorItem
+            name={'mapleBoss.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'dailyGift.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'acaneRiverSymbol.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'monsterPark.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'monsterCollection.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
           <button
             className='absolute right-2 top-2 text-2xl text-black'
             onClick={handleCancelChoosingImage}
