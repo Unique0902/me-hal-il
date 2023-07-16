@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import MapleHeader from './components/MapleHeader';
 import MeHalIl from './components/MeHalIl';
@@ -38,6 +38,24 @@ function App() {
       clearType: 'skipped',
     },
   ]);
+  const saveDailyListToLocal = (list) => {
+    localStorage.setItem('dailyList', JSON.stringify(list));
+  };
+  const saveWeeklyListToLocal = (list) => {
+    localStorage.setItem('weeklyList', JSON.stringify(list));
+  };
+  const getDailyListFromLocal = () => {
+    const wildDailyList = localStorage.getItem('dailyList');
+    if (wildDailyList) {
+      setDailyList(JSON.parse(wildDailyList));
+    }
+  };
+  const getWeeklyListFromLocal = () => {
+    const wildWeeklyList = localStorage.getItem('weeklyList');
+    if (wildWeeklyList) {
+      setWeeklyList(JSON.parse(wildWeeklyList));
+    }
+  };
   const goEditor = () => {
     setIsEditing(true);
   };
@@ -52,108 +70,123 @@ function App() {
   };
   const handleSkipItem = (id) => {
     if (halIlType === 'daily') {
-      setDailyList(
-        dailyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, isCleared: true, clearType: 'skipped' };
-          }
-          return item;
-        })
-      );
+      const newDailyList = dailyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, isCleared: true, clearType: 'skipped' };
+        }
+        return item;
+      });
+      setDailyList(newDailyList);
+      saveDailyListToLocal(newDailyList);
     } else {
-      setWeeklyList(
-        weeklyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, isCleared: true, clearType: 'skipped' };
-          }
-          return item;
-        })
-      );
+      const newWeeklyList = weeklyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, isCleared: true, clearType: 'skipped' };
+        }
+        return item;
+      });
+      setWeeklyList(newWeeklyList);
+      saveWeeklyListToLocal(newWeeklyList);
     }
   };
   const handleCompleteItem = (id) => {
     if (halIlType === 'daily') {
-      setDailyList(
-        dailyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, isCleared: true, clearType: 'completed' };
-          }
-          return item;
-        })
-      );
+      const newDailyList = dailyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, isCleared: true, clearType: 'completed' };
+        }
+        return item;
+      });
+      setDailyList(newDailyList);
+      saveDailyListToLocal(newDailyList);
     } else {
-      setWeeklyList(
-        weeklyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, isCleared: true, clearType: 'completed' };
-          }
-          return item;
-        })
-      );
+      const newWeeklyList = weeklyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, isCleared: true, clearType: 'completed' };
+        }
+        return item;
+      });
+      setWeeklyList(newWeeklyList);
+      saveWeeklyListToLocal(newWeeklyList);
     }
   };
   const handleRetryItem = (id) => {
     if (halIlType === 'daily') {
-      setDailyList(
-        dailyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, isCleared: false, clearType: '' };
-          }
-          return item;
-        })
-      );
+      const newDailyList = dailyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, isCleared: false, clearType: '' };
+        }
+        return item;
+      });
+      setDailyList(newDailyList);
+      saveDailyListToLocal(newDailyList);
     } else {
-      setWeeklyList(
-        weeklyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, isCleared: false, clearType: '' };
-          }
-          return item;
-        })
-      );
+      const newWeeklyList = weeklyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, isCleared: false, clearType: '' };
+        }
+        return item;
+      });
+      setWeeklyList(newWeeklyList);
+      saveWeeklyListToLocal(newWeeklyList);
     }
   };
   const handleAddItem = (name) => {
     if (halIlType === 'daily') {
-      setDailyList([
+      const newDailyList = [
         ...dailyList,
         { id: Date.now().toString(), name, isCleared: false, clearType: '' },
-      ]);
+      ];
+      setDailyList(newDailyList);
+      saveDailyListToLocal(newDailyList);
     } else {
-      setWeeklyList([
+      const newWeeklyList = [
         ...weeklyList,
         { id: Date.now().toString(), name, isCleared: false, clearType: '' },
-      ]);
+      ];
+      setWeeklyList(newWeeklyList);
+      saveWeeklyListToLocal(newWeeklyList);
     }
   };
   const handleDeleteItem = (id) => {
     if (halIlType === 'daily') {
-      setDailyList(dailyList.filter((item) => item.id !== id));
+      const newDailyList = dailyList.filter((item) => item.id !== id);
+      setDailyList(newDailyList);
+      saveDailyListToLocal(newDailyList);
     } else {
-      setWeeklyList(weeklyList.filter((item) => item.id !== id));
+      const newWeeklyList = weeklyList.filter((item) => item.id !== id);
+      setWeeklyList(newWeeklyList);
+      saveWeeklyListToLocal(newWeeklyList);
     }
   };
   const handleEditItem = (id, newName) => {
     if (halIlType === 'daily') {
-      setDailyList(
-        dailyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, name: newName };
-          }
-          return item;
-        })
-      );
+      const newDailyList = dailyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, name: newName };
+        }
+        return item;
+      });
+      setDailyList(newDailyList);
+      saveDailyListToLocal(newDailyList);
     } else {
-      setWeeklyList(
-        weeklyList.map((item) => {
-          if (item.id === id) {
-            return { ...item, name: newName };
-          }
-          return item;
-        })
-      );
+      const newWeeklyList = weeklyList.map((item) => {
+        if (item.id === id) {
+          return { ...item, name: newName };
+        }
+        return item;
+      });
+      setWeeklyList(newWeeklyList);
+      saveWeeklyListToLocal(newWeeklyList);
     }
   };
+  useEffect(() => {
+    if (halIlType === 'daily') {
+      getDailyListFromLocal();
+    } else {
+      getWeeklyListFromLocal();
+    }
+  }, [halIlType]);
   return (
     <>
       <MapleHeader
