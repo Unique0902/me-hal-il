@@ -22,6 +22,7 @@ export default function MapleEditorItem({
         handleEditItem={handleEditItem}
         editId={item.id}
         editName={item.name}
+        editImageName={item.imageName}
       />
     );
   }
@@ -31,6 +32,7 @@ export default function MapleEditorItem({
       name={item.name}
       key={item.id}
       id={item.id}
+      imageName={item.imageName}
       handleDeleteItem={handleDeleteItem}
       handleStartEditItem={handleStartEditItem}
     />

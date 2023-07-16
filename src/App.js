@@ -9,33 +9,49 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [halIlType, setHalIlType] = useState('daily');
   const [dailyList, setDailyList] = useState([
-    { id: 1, name: '일간 유니온 코인 받기', isCleared: false, clearType: null },
+    {
+      id: 1,
+      name: '일간 유니온 코인 받기',
+      isCleared: false,
+      clearType: null,
+      imageName: 'exUnion.png',
+    },
     {
       id: 2,
       name: '일간 유니온 코인 안 받기',
       isCleared: true,
       clearType: 'completed',
+      imageName: 'exUnion.png',
     },
     {
       id: 3,
       name: '일간 유니온 코인 완전안 받기',
       isCleared: true,
       clearType: 'skipped',
+      imageName: 'exUnion.png',
     },
   ]);
   const [weeklyList, setWeeklyList] = useState([
-    { id: 1, name: '주간 유니온 코인 받기', isCleared: false, clearType: null },
+    {
+      id: 1,
+      name: '주간 유니온 코인 받기',
+      isCleared: false,
+      clearType: null,
+      imageName: 'exUnion.png',
+    },
     {
       id: 2,
       name: '주간 유니온 코인 안 받기',
       isCleared: true,
       clearType: 'completed',
+      imageName: 'exUnion.png',
     },
     {
       id: 3,
       name: '주간 유니온 코인 완전안 받기',
       isCleared: true,
       clearType: 'skipped',
+      imageName: 'exUnion.png',
     },
   ]);
   const saveDailyListToLocal = (list) => {
@@ -131,18 +147,30 @@ function App() {
       saveWeeklyListToLocal(newWeeklyList);
     }
   };
-  const handleAddItem = (name) => {
+  const handleAddItem = (name, imageName) => {
     if (halIlType === 'daily') {
       const newDailyList = [
         ...dailyList,
-        { id: Date.now().toString(), name, isCleared: false, clearType: '' },
+        {
+          id: Date.now().toString(),
+          name,
+          imageName,
+          isCleared: false,
+          clearType: '',
+        },
       ];
       setDailyList(newDailyList);
       saveDailyListToLocal(newDailyList);
     } else {
       const newWeeklyList = [
         ...weeklyList,
-        { id: Date.now().toString(), name, isCleared: false, clearType: '' },
+        {
+          id: Date.now().toString(),
+          name,
+          imageName,
+          isCleared: false,
+          clearType: '',
+        },
       ];
       setWeeklyList(newWeeklyList);
       saveWeeklyListToLocal(newWeeklyList);
@@ -159,11 +187,11 @@ function App() {
       saveWeeklyListToLocal(newWeeklyList);
     }
   };
-  const handleEditItem = (id, newName) => {
+  const handleEditItem = (id, newName, newImageName) => {
     if (halIlType === 'daily') {
       const newDailyList = dailyList.map((item) => {
         if (item.id === id) {
-          return { ...item, name: newName };
+          return { ...item, name: newName, imageName: newImageName };
         }
         return item;
       });
@@ -172,7 +200,7 @@ function App() {
     } else {
       const newWeeklyList = weeklyList.map((item) => {
         if (item.id === id) {
-          return { ...item, name: newName };
+          return { ...item, name: newName, imageName: newImageName };
         }
         return item;
       });

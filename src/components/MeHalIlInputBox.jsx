@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 import { BiSolidSave } from 'react-icons/bi';
+import ImageSelectorItem from './ImageSelectorItem';
 
 export default function MeHalIlInputBox({
   type,
@@ -10,19 +11,57 @@ export default function MeHalIlInputBox({
   handleEditItem,
   editId,
   editName,
+  editImageName,
 }) {
+  const [selectedImageName, setSelectedImageName] = useState('exUnion.png');
+  const [isChoosingImage, setIsChoosingImage] = useState(false);
   const [halIlName, setHalIlName] = useState('기본 할일 1');
   const handleChange = (e) => setHalIlName(e.target.value);
+  const handleStartChooseImage = () => {
+    setIsChoosingImage(true);
+  };
+  const handleCancelChoosingImage = () => {
+    setIsChoosingImage(false);
+  };
+  const handleClickImage = (e) => {
+    setSelectedImageName(e.target.name);
+  };
   useEffect(() => {
     if (type === 'edit') {
       setHalIlName(editName);
+      if (editImageName) {
+        setSelectedImageName(editImageName);
+      }
     }
   }, []);
   return (
-    <div className='flex flex-row px-8 py-8 justify-between bg-maplelightgray items-center'>
-      <button className='bg-mapledarkgrey text-white px-4 py-2 text-lg font-semibold hover:scale-110 '>
-        파일추가
+    <div className='flex flex-row px-8 py-8 justify-between bg-maplelightgray items-center relative'>
+      <button
+        className='bg-mapledarkgrey text-white px-4 py-2 text-lg font-semibold hover:scale-110 '
+        onClick={handleStartChooseImage}
+      >
+        이미지 선택
       </button>
+      {isChoosingImage && (
+        <div className='absolute bottom-0  w-1/3 flex flex-wrap gap-2 p-4 pr-4 bg-white'>
+          <ImageSelectorItem
+            name={'exUnion.png'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'urous.png'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <button
+            className='absolute right-2 top-2 text-2xl text-black'
+            onClick={handleCancelChoosingImage}
+          >
+            <AiOutlineClose />
+          </button>
+        </div>
+      )}
       <input
         type={'text'}
         value={halIlName}
@@ -36,7 +75,7 @@ export default function MeHalIlInputBox({
             className='text-mapleskyblue text-4xl hover:scale-110'
             onClick={() => {
               if (halIlName) {
-                handleAddItem(halIlName);
+                handleAddItem(halIlName, selectedImageName);
                 onAddingCancel();
               }
             }}
@@ -57,7 +96,7 @@ export default function MeHalIlInputBox({
             className='text-mapleskyblue text-4xl hover:scale-110'
             onClick={() => {
               if (halIlName) {
-                handleEditItem(editId, halIlName);
+                handleEditItem(editId, halIlName, selectedImageName);
                 handleEditCancel();
               }
             }}

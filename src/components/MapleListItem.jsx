@@ -12,13 +12,14 @@ export default function MapleListItem({
   handleRetryItem,
   handleSkipItem,
   id,
+  imageName,
   handleCompleteItem,
   handleDeleteItem,
   handleStartEditItem,
 }) {
   return (
     <li className=' h-32 flex flex-row items-center justify-between'>
-      <img src='imgs/exUnion.png' alt='exUnion' className='h-full' />
+      <img src={`imgs/${imageName}`} className='w-64 h-32' />
       <div
         className={`flex flex-row ${type === 'todo' && 'bg-mapleskyblue'} ${
           type === 'finished' && 'bg-maplelightgray'
@@ -28,14 +29,10 @@ export default function MapleListItem({
       >
         <h4 className='text-black text-2xl font-semibold'>{name}</h4>
         {type === 'finished' && clearType === 'completed' && (
-          <h4 className='text-black text-2xl font-extrabold text-mapledarkgrey'>
-            완료
-          </h4>
+          <h4 className=' text-2xl font-extrabold text-mapledarkgrey'>완료</h4>
         )}
         {type === 'finished' && clearType === 'skipped' && (
-          <h4 className='text-black text-2xl font-extrabold text-mapleblue'>
-            스킵
-          </h4>
+          <h4 className=' text-2xl font-extrabold text-mapleblue'>스킵</h4>
         )}
         {type === 'todo' && (
           <div className='flex flex-row items-center gap-4'>

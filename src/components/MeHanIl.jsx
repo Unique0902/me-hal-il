@@ -18,6 +18,7 @@ export default function MeHanIl({ goEditor, list, handleRetryItem }) {
               name={item.name}
               key={item.id}
               id={item.id}
+              imageName={item.imageName}
               clearType={item.clearType}
               handleRetryItem={handleRetryItem}
             />

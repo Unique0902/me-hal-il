@@ -23,6 +23,7 @@ export default function MeHalIl({
               name={item.name}
               key={item.id}
               id={item.id}
+              imageName={item.imageName}
               handleSkipItem={handleSkipItem}
               handleCompleteItem={handleCompleteItem}
             />
