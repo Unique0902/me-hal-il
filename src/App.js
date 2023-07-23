@@ -264,11 +264,8 @@ function App() {
     }
   };
   useEffect(() => {
-    if (halIlType === 'daily') {
-      getDailyListFromLocal();
-    } else {
-      getWeeklyListFromLocal();
-    }
+    getDailyListFromLocal();
+    getWeeklyListFromLocal();
   }, [halIlType]);
   return (
     <>
