@@ -6,6 +6,7 @@ import MeHalIlEditor from './components/MeHalIlEditor';
 import MeHanIl from './components/MeHanIl';
 
 function App() {
+  const [startTime, setStartTime] = useState(Date.now());
   const [isEditing, setIsEditing] = useState(false);
   const [halIlType, setHalIlType] = useState('daily');
   const [dailyList, setDailyList] = useState([
@@ -55,21 +56,57 @@ function App() {
     },
   ]);
   const saveDailyListToLocal = (list) => {
-    localStorage.setItem('dailyList', JSON.stringify(list));
+    localStorage.setItem(
+      'dailyList',
+      JSON.stringify({ recentTime: startTime, dataArr: list })
+    );
   };
   const saveWeeklyListToLocal = (list) => {
-    localStorage.setItem('weeklyList', JSON.stringify(list));
+    localStorage.setItem(
+      'weeklyList',
+      JSON.stringify({ recentTime: startTime, dataArr: list })
+    );
   };
   const getDailyListFromLocal = () => {
     const wildDailyList = localStorage.getItem('dailyList');
     if (wildDailyList) {
-      setDailyList(JSON.parse(wildDailyList));
+      const data = JSON.parse(wildDailyList);
+      if (data.recentTime) {
+        updateDailyListByDate(data);
+      } else {
+        setDailyList(data);
+      }
     }
   };
   const getWeeklyListFromLocal = () => {
     const wildWeeklyList = localStorage.getItem('weeklyList');
     if (wildWeeklyList) {
-      setWeeklyList(JSON.parse(wildWeeklyList));
+      const data = JSON.parse(wildWeeklyList);
+      if (data.recentTime) {
+        updateWeeklyListByDate(data);
+      } else {
+        setWeeklyList(data);
+      }
+    }
+  };
+  const updateDailyListByDate = (data) => {
+    const listDate = new Date(data.recentTime);
+    const nowDate = new Date();
+    if (listDate.getDate() === nowDate.getDate()) {
+      setDailyList(data.dataArr);
+    } else {
+      clearTimeDailyList(data.dataArr);
+    }
+  };
+  const updateWeeklyListByDate = (data) => {
+    const listDate = new Date(data.recentTime);
+    const nowDate = new Date();
+    if ((listDate.getTime() - nowDate.getTime()) / (1000 * 60 * 60 * 24) >= 7) {
+      clearTimeWeeklyList(data.dataArr);
+    } else if (listDate.getDay() < 4 && nowDate.getDay() >= 4) {
+      clearTimeWeeklyList(data.dataArr);
+    } else {
+      setWeeklyList(data.dataArr);
     }
   };
   const goEditor = () => {
@@ -83,6 +120,24 @@ function App() {
   };
   const handleClickWeekly = () => {
     setHalIlType('weekly');
+  };
+  const clearTimeDailyList = (dataArr) => {
+    const newDailyList = dataArr.map((item) => ({
+      ...item,
+      isCleared: false,
+      clearType: null,
+    }));
+    setDailyList(newDailyList);
+    saveDailyListToLocal(newDailyList);
+  };
+  const clearTimeWeeklyList = (dataArr) => {
+    const newWeeklyList = dataArr.map((item) => ({
+      ...item,
+      isCleared: false,
+      clearType: null,
+    }));
+    setWeeklyList(newWeeklyList);
+    saveWeeklyListToLocal(newWeeklyList);
   };
   const handleSkipItem = (id) => {
     if (halIlType === 'daily') {
