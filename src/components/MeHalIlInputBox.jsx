@@ -35,9 +35,9 @@ export default function MeHalIlInputBox({
     }
   }, []);
   return (
-    <div className='flex flex-row px-8 py-8 justify-between bg-maplelightgray items-center relative'>
+    <div className='flex flex-row px-8 py-8 justify-between bg-maplelightgray items-center relative rounded-3xl'>
       <button
-        className='bg-mapledarkgrey text-white px-4 py-2 text-lg font-semibold hover:scale-110 '
+        className='bg-mapledarkgrey text-white px-4 py-2 text-lg font-semibold hover:scale-110 rounded-3xl'
         onClick={handleStartChooseImage}
       >
         이미지 선택
@@ -91,7 +91,7 @@ export default function MeHalIlInputBox({
         type={'text'}
         value={halIlName}
         placeholder={'할일 이름을 적어주세요.'}
-        className='border-2 border-black w-2/3 py-2 px-4 text-lg font-medium'
+        className='border-2 border-black w-2/3 py-2 px-4 text-lg font-medium rounded-3xl'
         onChange={handleChange}
       />
       {type === 'add' && (

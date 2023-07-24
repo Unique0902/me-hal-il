@@ -19,13 +19,13 @@ export default function MapleListItem({
 }) {
   return (
     <li className=' h-32 flex flex-row items-center justify-between'>
-      <img src={`imgs/${imageName}`} className='w-64 h-32' />
+      <img src={`imgs/${imageName}`} className='w-64 h-32 rounded-3xl' />
       <div
         className={`flex flex-row ${type === 'todo' && 'bg-mapleskyblue'} ${
           type === 'finished' && 'bg-maplelightgray'
         } ${
           type === 'edit' && 'bg-mapleskyblue'
-        } h-2/3 w-2/3 items-center justify-between px-10`}
+        } h-2/3 w-2/3 items-center justify-between px-10 rounded-3xl`}
       >
         <h4 className='text-black text-2xl font-semibold'>{name}</h4>
         {type === 'finished' && clearType === 'completed' && (

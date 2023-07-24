@@ -17,14 +17,14 @@ export default function DetailHeader({ type, onBtnClick, listNum, clearNum }) {
         )}
         {type === 'edit' ? (
           <button
-            className=' bg-mapleorange px-6 py-4 text-white font-semibold text-xl hover:scale-110'
+            className=' bg-mapleorange px-6 py-4 text-white font-semibold text-xl hover:scale-110 rounded-3xl'
             onClick={onBtnClick}
           >
             저장
           </button>
         ) : (
           <button
-            className=' bg-maplebtngrey px-6 py-4 text-white font-semibold text-xl hover:scale-110'
+            className=' bg-maplebtngrey px-6 py-4 text-white font-semibold text-xl hover:scale-110 rounded-3xl'
             onClick={onBtnClick}
           >
             편집

@@ -34,7 +34,7 @@ export default function MeHalIlEditor({
         ))}
         {!isAdding && (
           <button
-            className=' border-2 border-maplelightgray border-dashed px-4 py-12'
+            className=' border-2 border-maplelightgray border-dashed px-4 py-12 rounded-3xl'
             onClick={onClickAddBtn}
           >
             <h3 className=' text-mapledarkgrey text-3xl font-medium text-left'>
