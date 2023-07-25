@@ -145,11 +145,17 @@ function App() {
       JSON.stringify({ recentTime: startTime, dataArr: list })
     );
   };
+  const clearDailyListToLocal = () => {
+    localStorage.removeItem('dailyList');
+  };
   const saveWeeklyListToLocal = (list) => {
     localStorage.setItem(
       'weeklyList',
       JSON.stringify({ recentTime: startTime, dataArr: list })
     );
+  };
+  const clearWeeklyListToLocal = () => {
+    localStorage.removeItem('weeklyList');
   };
   const getDailyListFromLocal = () => {
     const wildDailyList = localStorage.getItem('dailyList');
@@ -347,6 +353,25 @@ function App() {
       saveWeeklyListToLocal(newWeeklyList);
     }
   };
+  const handleClickClearListBtn = () => {
+    if (halIlType === 'daily') {
+      if (
+        window.confirm('정말 일간 메할일 리스트를 기본으로 초기화하시겠습니까?')
+      ) {
+        clearDailyListToLocal();
+        window.location.reload();
+        alert('일간 메할일 리스트가 초기화되었습니다');
+      }
+    } else {
+      if (
+        window.confirm('정말 주간 메할일 리스트를 기본으로 초기화하시겠습니까?')
+      ) {
+        clearWeeklyListToLocal();
+        window.location.reload();
+        alert('주간 메할일 리스트가 초기화되었습니다');
+      }
+    }
+  };
   useEffect(() => {
     getDailyListFromLocal();
     getWeeklyListFromLocal();
@@ -368,6 +393,7 @@ function App() {
             handleAddItem={handleAddItem}
             handleDeleteItem={handleDeleteItem}
             handleEditItem={handleEditItem}
+            handleClickClearListBtn={handleClickClearListBtn}
           />
         ) : (
           <>

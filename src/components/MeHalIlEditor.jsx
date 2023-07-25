@@ -9,6 +9,7 @@ export default function MeHalIlEditor({
   handleAddItem,
   handleDeleteItem,
   handleEditItem,
+  handleClickClearListBtn,
 }) {
   const [isAdding, setIsAdding] = useState(false);
   const onClickAddBtn = () => {
@@ -49,6 +50,14 @@ export default function MeHalIlEditor({
             handleAddItem={handleAddItem}
           />
         )}
+        <div className='flex flex-row justify-end'>
+          <button
+            className='bg-red-600 text-mapledarkgrey text-2xl font-bold w-48 px-4 py-2 rounded-3xl hover:scale-105'
+            onClick={handleClickClearListBtn}
+          >
+            초기화
+          </button>
+        </div>
       </ul>
     </div>
   );
