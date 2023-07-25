@@ -43,7 +43,7 @@ export default function MeHalIlInputBox({
         이미지 선택
       </button>
       {isChoosingImage && (
-        <div className='absolute bottom-0  w-1/3 flex flex-wrap gap-2 p-4 pr-4 bg-white'>
+        <div className='absolute bottom-0  w-1/2 flex flex-wrap gap-2 p-12 bg-white rounded-3xl border-2 border-gray-300'>
           <ImageSelectorItem
             name={'exUnion.png'}
             handleClickImage={handleClickImage}
@@ -79,8 +79,33 @@ export default function MeHalIlInputBox({
             handleClickImage={handleClickImage}
             selectedImageName={selectedImageName}
           />
+          <ImageSelectorItem
+            name={'mapleM.png'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'mapleGuildCheck.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'mooreung.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'assenticSymbol.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
+          <ImageSelectorItem
+            name={'mapleLogo.jpg'}
+            handleClickImage={handleClickImage}
+            selectedImageName={selectedImageName}
+          />
           <button
-            className='absolute right-2 top-2 text-2xl text-black'
+            className='absolute right-4 top-4 text-2xl text-red-500'
             onClick={handleCancelChoosingImage}
           >
             <AiOutlineClose />
