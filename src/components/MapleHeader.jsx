@@ -10,8 +10,8 @@ export default function MapleHeader({
   weeklyNum,
 }) {
   return (
-    <header className='p-4 fixed'>
-      <div className='relative flex flex-row w-screen'>
+    <header className='p-4 fixed bg-white'>
+      <div className='relative flex flex-row w-screen '>
         <PageTitleBox />
         <section className=''>
           <div className='absolute right-20 flex flex-row gap-6'>
